@@ -1,0 +1,126 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Space Grotesk', ui-sans-serif, sans-serif;
+  --font-sans: 'Source Sans 3', ui-sans-serif, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --color-ink: #070b14;
+  --color-navy: #0b1220;
+  --color-slate: #121a2b;
+  --color-panel: #162033;
+  --color-line: #243047;
+  --color-muted: #94a3b8;
+  --color-soft: #cbd5e1;
+  --color-bright: #e8eef7;
+  --color-accent: #38bdf8;
+  --color-accent-dim: #0ea5e9;
+  --color-accent-soft: rgba(56, 189, 248, 0.12);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    margin: 0;
+    min-height: 100svh;
+    font-family: var(--font-sans);
+    color: var(--color-soft);
+    background-color: var(--color-ink);
+    background-image:
+      radial-gradient(ellipse 80% 50% at 10% -10%, rgba(14, 165, 233, 0.12), transparent 55%),
+      radial-gradient(ellipse 60% 40% at 90% 0%, rgba(56, 189, 248, 0.06), transparent 50%),
+      linear-gradient(180deg, var(--color-navy) 0%, var(--color-ink) 40%, var(--color-ink) 100%);
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  #root {
+    min-height: 100svh;
+  }
+
+  ::selection {
+    background: rgba(56, 189, 248, 0.28);
+    color: var(--color-bright);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  a {
+    color: inherit;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .section-pad {
+    @apply px-5 py-20 sm:px-8 lg:px-10 lg:py-24;
+  }
+
+  .container-page {
+    @apply mx-auto w-full max-w-6xl;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .reveal {
+    animation: rise 0.7s ease both;
+  }
+
+  .reveal-delay-1 {
+    animation-delay: 0.08s;
+  }
+
+  .reveal-delay-2 {
+    animation-delay: 0.16s;
+  }
+
+  .reveal-delay-3 {
+    animation-delay: 0.24s;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-delay-1,
+  .reveal-delay-2,
+  .reveal-delay-3 {
+    animation: none;
+  }
+}
