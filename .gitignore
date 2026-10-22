@@ -26,3 +26,4 @@ dist-ssr
 # Cursor / debug
 .cursor/
 
+.github/workflows/
